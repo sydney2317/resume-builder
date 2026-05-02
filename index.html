@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Add information for favicon images for both apps and the website-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    <title>Resume Builder</title>
+    <link rel="icon" type="image/png" href="images/favicon.png"> 
+    <link rel="apple-touch-icon" href="images/apple-touch-icon-iphone60x60.png"> 
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-ipad-76x76.png"> 
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-iphone-retina-120x120.png"> 
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-ipad-retina-152x152.png">
+    <!--bootstrap and libraries used-->
+    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+    <link href="css/lib/bootstrap.css" rel="stylesheet">
+    
+</head>
+<body class="m-0">
+        <!-- main wrapper for home screen-->
+        <div id="divHome" class="min-vh-100">
+             <!--Page header with centered text and a background image-->
+            <header class="text-black text-center py-5" style="background: url('images/header.png') no-repeat center; background-size: cover;">
+                <h1 class="display-3 fw-bold">Resume Builder</h1>
+                <p class="lead fw-bold">Create, manage, and generate your resume</p>
+            </header>
+            <!--Container for the settings button row-->
+            <div class="container-fluid py-2">
+                <div class="d-flex justify-content-end">
+                    <!--button aligned to the right-->
+                    <button id="btnSettings" class="btn btn-sm btn-light text-dark" type="button">Settings</button>
+                </div>
+            </div>
+            <!--Main content row containing the three primary action cards-->
+            <div class="row g-4 mt-4">
+                <!-- ---------------- Main menu: ADD INFO ---------------- -->
+                <div class="col-md-6 mt-4">
+                    <!--Left column: Step 1 card-->
+                    <div class="card shadow-lg p-4 h-100">
+                        <h2 class="mb-3 text-black">Step 1: Add Information</h2>
+                        <p> Add jobs, skills, certifications, and awards to your resume database.</p>
+                        <!-- Button to open the Add Information section -->
+                        <button id="btnAddInfo" style="background-color: #91c8fb" class="btn btn-lg w-100 mt-3 text-black" type="button">Add Information to Resume</button>
+                    </div>
+                </div>
+                <!-- ---------------- Main Menu: BUILD RESUME ---------------- -->
+                <!-- Right column: Step 2 card -->
+                <div class="col-md-6 mt-4">
+                    <div class="card shadow-lg p-4 h-100">
+                        <h2 class="mb-3 text-black">Step 2: Build Resume</h2>
+                        <p> Select saved information and generate your resume.</p>
+                        <!-- Button to open the resume builder -->
+                        <button id="btnAddResume" style="background-color: #aff8b0" class="btn btn-lg w-100 mt-3 text-black" type="button">Generate Resume</button>
+                    </div>
+                </div>
+                <!-- Centered row for Step 3 card -->
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mt-4">
+                        <div class="card shadow-lg p-4 h-100">
+                            <h2 class="mb-3 text-black">Step 3: View Saved Resumes</h2>
+                            <p>Open resumes you already generated and saved.</p>
+                            <!-- Button to open the saved resumes list -->
+                            <button id="btnViewResumes" style="background-color: #f7c2d8"class="btn btn-lg w-100 mt-3 text-black" type="button">View Saved Resumes</button>
+                        </div>
+                    </div> 
+                </div>            
+            </div>    
+        </div>
+
+<!-- ================= ADD INFO SECTION ================= -->
+
+    <!--Container for the Add Information screen-->
+    <div id="divAddInfo" class="d-none flex-column bg-light min-vh-100">
+        <!-- Page header bar with centered text and a solid background color -->
+        <header class="text-black text-center py-5 w-100" style="background-color: #a48bed">
+            <h1 class="display-3 fw-bold">Add Information</h1>
+        </header>
+        <!--Main content container-->
+        <div class="container flex-grow-1 py-4">
+            <div class="row justify-content-center">
+                <div class="col-10 col-md-6 text-center">
+                    <!-- Button to return to the home screen -->                    
+                    <button id="btnBackHome" class="btn btn-secondary mb-4"> ← Back to Home</button>
+                    <!-- Card wrapper for the list of Add Information options -->
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <!--Buttons for each thing users can add-->
+                            <button id="btnGoToPersonal" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Personal Information</button>
+                            <button id="btnGoToEducation" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Education</button>
+                            <button id="btnGoToJob" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Job</button>
+                            <button id="btnGoToRes" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Job Responsibility</button>
+                            <button id="btnGoToSkill" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Skill</button>
+                            <button id="btnGoToCertification" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Certification</button>
+                            <button id="btnGoToAward" class="btn w-100 mt-3 text-black" style="background-color: #91c8fb">Add Award</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Full‑screen container for the Personal Information form-->
+    <div id="divAddPersonalInfoCard" class="d-none justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds the personal info input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Information</h2>
+                <!--Text inputs for all user information-->
+                <input id="txtFirstName" class="form-control mb-2" placeholder="First Name" aria-label="First name" required>
+                <input id="txtLastName" class="form-control mb-2" placeholder="Last Name" aria-label="Last name" required>
+                <input id="txtEmail" class="form-control mb-2" placeholder="Email" aria-label="Eamil" required>
+                <input id="txtPhone" class="form-control mb-2" placeholder="Phone" aria-label="Phone">
+                <input id="txtAddress" class="form-control mb-2" placeholder="Address" aria-label="Address">
+                <!-- Button that triggers saving the personal information -->
+                <button id="btnSubmitInfo"class="btn btn-primary">Save User Info</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackToOptionsMenu" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+    <!--Full‑screen container for the Add Education form-->
+    <div id="divAddEducationInfoCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds all education input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Education</h2>
+                <!--input text for all education information-->
+                <input id="txtSchool" class="form-control mb-2" placeholder="School Name" aria-label="School" required>
+                <input id="txtDegree" class="form-control mb-2" placeholder="Degree" aria-label="Degree" required>
+                <input id="txtMajor" class="form-control mb-2" placeholder="Major" aria-label="Major" required>
+                <input id="txtGradYear" class="form-control mb-2" placeholder="Graduation Year" aria-label="Graduation Year">
+                <!-- Button that triggers saving the education record -->
+                <button id="btnSubmitEducation"class="btn btn-primary">Save Education Info</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromEducation" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Add Job form-->
+    <div id="divAddJobInfoCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds all job input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Job</h2>
+                <!--Text input for all job information-->
+                <input id="txtJobTitle" class="form-control mb-2" placeholder="Job Title" aria-label="Job title" required>
+                <input id="txtCompany" class="form-control mb-2" placeholder="Company" aria-label="Company" required>
+                <!-- Button that triggers saving the job record -->
+                <button id="btnSubmitJob"class="btn btn-primary">Add Job</button>
+                 <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromJob" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Add Job Responsibility form-->
+    <div id="divAddJobResCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds all responsibility input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Responsibilities</h2>
+                <!--Input for job responsibility information-->
+                <select id="selectJobForResp" class="form-select mb-2"></select>
+
+                <input id="txtResponsibility" class="form-control mb-2" placeholder="Responsibility" aria-label="Responsibility">
+                <!-- Button that triggers saving the responsibility to the selected job -->
+                <button id="btnSubmitResponsibility" class="btn btn-primary mb-4">Add Responsibility</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromJobRes" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Add Skill form-->
+    <div id="divAddSkillsCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds the skill input field -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Skill</h2>
+                <!-- Text input for entering a single skill -->
+                <input id="txtSkill" class="form-control mb-2" placeholder="Skill" aria-label="Skill" required>
+                <!-- Button that triggers saving the skill record -->
+                <button id="btnSubmitSkill"class="btn btn-primary">Add Skill</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromSkill" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Add Certificate form-->
+    <div id="divAddCertificateCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds all certificate input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Certificate</h2>
+                <!--Text input for certificate information-->
+                <input id="txtCertificateName" class="form-control mb-2" placeholder="Certification Name" aria-label="Certification Name" required>
+
+                <input id="txtIssuer" class="form-control mb-2" placeholder="Issuing Organization" aria-label="Issuing Organization">
+
+                <input id="txtIssueDate" type="date" class="form-control mb-2" placeholder="Issue Date" aria-label="Issue Date">
+                <!-- Button that triggers saving the certificate record -->
+                <button id="btnSubmitCertificate"class="btn btn-primary">Add Certification</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromCertificate" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Add Award form-->
+    <div id="divAddAwardCard" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">   
+        <!-- Centered card that holds all award input fields -->
+        <div class="card shadow-lg mx-auto col-10 col-md-6 text-center">
+            <div class="card-body">
+                <h2>Add Award</h2>
+                <!--Text input for award information-->
+                <input id="txtAwardName" class="form-control mb-2" placeholder="Award Name" aria-label="Award Name" required>
+                <input id="txtOrganization" class="form-control mb-2" placeholder="Organization" aria-label="Organization">
+                <input id="txtAwardDate" type="date" class="form-control mb-2" placeholder="Issue Date" aria-label="Issue Date">
+                <!-- Button that triggers saving the award record -->
+                <button id="btnSubmitAward"class="btn btn-primary">Add Award</button>
+                <!-- Button that returns the user to the Add Information menu -->
+                <button id="btnBackFromAward" class="btn btn-secondary w-100 mt-3">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Build Resume screen-->
+    <div id="divBuildResume" class="d-none flex-column bg-light min-vh-100">
+        <header class="text-black text-center py-5 w-100" style="background-color: #a48bed">
+            <h1 class="display-3 fw-bold">Build Resume</h1>
+        </header>
+        <!-- Main content container for all resume‑building options -->
+        <div class="container py-4">
+            <!-- Button that returns the user to the previous screen -->
+            <button id="btnBackFromBuildResume" class="btn btn-secondary mb-4">Back</button>
+            <!-- Card for entering the resume name -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Resume Details</h2>
+                    <input id="txtResumeName" class="form-control mb-3" placeholder="Resume Name" aria-label="Resume Name">
+                </div>
+            </div>
+             <!-- Card containing user information selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">User Information</h2>
+                    <div id="divUserOptions"></div>
+                </div>
+            </div>
+            <!-- Card containing education selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Education</h2>
+                    <div id="divEducationCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Card containing job selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Jobs</h2>
+                    <div id="divJobCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Card containing responsibility selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Responsibilities</h2>
+                    <div id="divResponsibilityCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Card containing skill selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Skills</h2>
+                    <div id="divSkillCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Card containing certificate selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Certificates</h2>
+                    <div id="divCertificateCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Card containing award selection options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h2 class="text-dark">Awards</h2>
+                    <div id="divAwardCheckboxes"></div>
+                </div>
+            </div>
+            <!-- Button that triggers the final resume generation -->
+            <button id="btnGenerateResumeFinal" class="btn w-100 text-black" style="background-color: #aff8b0">Generate Resume</button>
+        </div>
+    </div>
+
+    <!--Full‑screen container for the Saved Resumes screen-->
+    <div id="divSavedResumes" class="d-none flex-column bg-light min-vh-100">
+        <header class="text-black text-center py-5 w-100" style="background-color: #a48bed">
+            <h1 class="display-3 fw-bold">Saved Resumes</h1>
+        </header>
+        <!-- Main content container for the saved resume list -->
+        <div class="container py-4">
+            <!-- Button that returns the user to the previous screen -->
+            <button id="btnBackFromSavedResumes" class="btn mb-4 text-black">Back</button>
+            <!-- Card wrapper for the list of generated resumes -->
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h1 class="text-black fw-bold">Generated Resumes</h1>
+                    <div id="divSavedResumeList" class="text-black"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/lib/bootstrap.bundle.min.js"></script>
+    <script src="js/lib/sweetalert2.all.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+
